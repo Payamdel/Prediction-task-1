@@ -4,10 +4,10 @@ library(caret)
  
 # Read in the training and test sets by using read.csv function. Because the initial data sets contain coloumns mostly filled with blank cells, missining values, and even possible white spaces, it would be desirable to exclude all of them from the data as they wont actually explain the variation among the observations. To this end, all of the blank cells and even cells that might include space (" ") will be interpreted as "NA" as "na.strings charactor vector" is applid to the data sets.
 
-´´´ training <- read.csv(file="pml-training.csv", header=T, na.strings=c("NA",""," "))
+training <- read.csv(file="pml-training.csv", header=T, na.strings=c("NA",""," "))
 dim(training)
 testing  <- read.csv(file="pml-testing.csv", header=T, na.strings=c("NA",""," "))
-dim(testing) ´´´
+dim(testing)
 
 # Second, all the NAs columns are found in the data and the names of those varaibles (V) are stored:
 V_training <-  colnames(training[ , colSums(is.na(training)) == 0])
@@ -43,6 +43,9 @@ rf_Model$finalModel
 
 # Plot the important variables
 varImpPlot(rf_Model$finalModel, sort = TRUE, scale=TRUE)
+
+file:///C:/Users/LOOP/Dropbox/Machine%20learning%20course/Prediction%20Assignment%20Writeup/varImpPlot.jpeg
+
 # Calculate and display the important variables
 varImp(rf_Model, scale = TRUE)
  
